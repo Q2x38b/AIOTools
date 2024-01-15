@@ -3,155 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ChatGPT Integration</title>
+    <title>Your Dark-themed Website</title>
     <style>
         body {
+            background-color: #1a1a1a;
+            color: #ffffff;
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #1a1a1a;
-            color: #fff;
         }
 
         header {
             background-color: #333;
-            color: #fff;
             padding: 10px;
             text-align: center;
         }
 
-        main {
-            padding: 20px;
-        }
-
         #chat-container {
             max-width: 600px;
-            margin: auto;
-            overflow-y: auto;
-            max-height: 400px;
-            border: 1px solid #555;
-            padding: 10px;
-            background-color: #222;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #2a2a2a;
+            border-radius: 8px;
         }
 
-        #user-input {
-            margin-top: 10px;
-            display: flex;
-        }
-
-        input[type="text"] {
-            width: 80%;
-            padding: 8px;
-            box-sizing: border-box;
-            border: none;
-            border-bottom: 2px solid #555;
+        footer {
             background-color: #333;
-            color: #fff;
-        }
-
-        input[type="submit"] {
-            width: 20%;
-            background-color: #4CAF50;
-            color: white;
-            padding: 8px 15px;
-            border: none;
-            cursor: pointer;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #45a049;
-        }
-
-        #chat {
-            margin-top: 10px;
-        }
-
-        #chat div {
-            margin-bottom: 8px;
-        }
-
-        #chat div strong {
-            color: #4CAF50;
-        }
-
-        #chat div.User {
-            color: #00bcd4;
-        }
-
-        #chat div.ChatGPT {
-            color: #ff9800;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>ChatGPT Integration</h1>
+        <h1>Your Website Name</h1>
+        <!-- Add navigation menu or logo here -->
     </header>
 
-    <main>
-        <div id="chat-container">
-            <!-- Chat messages will be displayed here -->
-            <div id="chat"></div>
-        </div>
+    <div id="chat-container">
+        <!-- ChatGPT messages will be displayed here -->
+    </div>
 
-        <div id="user-input">
-            <input type="text" id="user-message" placeholder="Type your message...">
-            <input type="submit" value="Send" onclick="sendMessage()">
-        </div>
-    </main>
+    <footer>
+        <p>&copy; 2024 Your Website Name. All rights reserved.</p>
+        <!-- Add additional information or links in the footer -->
+    </footer>
 
+    <!-- Replace the following script with your ChatGPT integration code -->
     <script>
-        async function sendMessage() {
-            try {
-                var userMessage = document.getElementById('user-message').value;
-                appendMessage('User', userMessage);
-
-                // Call OpenAI GPT API
-                const apiKey = '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';
-                const apiUrl = 'https://api.openai.com/v1/engines/davinci/completions';
-
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${apiKey}`,
-                    },
-                    body: JSON.stringify({
-                        prompt: userMessage,
-                        max_tokens: 100,
-                    }),
-                });
-
-                if (!response.ok) {
-                    throw new Error(`Failed to fetch: ${response.status} ${response.statusText}`);
-                }
-
-                const result = await response.json();
-
-                if (!result || !result.choices || result.choices.length === 0 || !result.choices[0].text) {
-                    throw new Error('Invalid or empty API response structure');
-                }
-
-                const chatGptResponse = result.choices[0].text.trim();
-
-                // Display ChatGPT response
-                appendMessage('ChatGPT', chatGptResponse);
-
-                // Clear user input
-                document.getElementById('user-message').value = '';
-            } catch (error) {
-                console.error('Error:', error);
-                // Handle error, display a user-friendly message, or log it for further investigation
-            }
-        }
-
-        function appendMessage(sender, message) {
-            var chatContainer = document.getElementById('chat');
-            var messageElement = document.createElement('div');
-            messageElement.className = sender;
-            messageElement.innerHTML = '<strong>' + sender + ':</strong> ' + message;
-            chatContainer.appendChild(messageElement);
-        }
+        // Your ChatGPT integration code goes here
+        // Make sure to handle user interactions and API calls
     </script>
 </body>
 </html>
