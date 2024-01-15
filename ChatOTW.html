@@ -9,6 +9,8 @@
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #1a1a1a;
+            color: #fff;
         }
 
         header {
@@ -29,21 +31,26 @@
             max-height: 400px;
             border: 1px solid #555;
             padding: 10px;
-            background-color: #f5f5f5;
+            background-color: #222;
         }
 
         #user-input {
             margin-top: 10px;
+            display: flex;
         }
 
         input[type="text"] {
             width: 80%;
             padding: 8px;
             box-sizing: border-box;
-            border: 1px solid #555;
+            border: none;
+            border-bottom: 2px solid #555;
+            background-color: #333;
+            color: #fff;
         }
 
         input[type="submit"] {
+            width: 20%;
             background-color: #4CAF50;
             color: white;
             padding: 8px 15px;
@@ -53,6 +60,26 @@
 
         input[type="submit"]:hover {
             background-color: #45a049;
+        }
+
+        #chat {
+            margin-top: 10px;
+        }
+
+        #chat div {
+            margin-bottom: 8px;
+        }
+
+        #chat div strong {
+            color: #4CAF50;
+        }
+
+        #chat div.User {
+            color: #00bcd4;
+        }
+
+        #chat div.ChatGPT {
+            color: #ff9800;
         }
     </style>
 </head>
@@ -74,14 +101,30 @@
     </main>
 
     <script>
-        function sendMessage() {
+        async function sendMessage() {
             var userMessage = document.getElementById('user-message').value;
             appendMessage('User', userMessage);
 
-            // Call ChatGPT or your backend API here for processing user input
+            // Call OpenAI GPT API
+            const apiKey = 'YOUR_OPENAI_API_KEY';
+            const apiUrl = 'https://api.openai.com/v1/engines/davinci/completions';
 
-            // For demonstration purposes, let's assume a simple response from ChatGPT
-            var chatGptResponse = 'ChatGPT: ' + 'This is a sample response from ChatGPT.';
+            const response = await fetch(apiUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${apiKey}`,
+                },
+                body: JSON.stringify({
+                    prompt: userMessage,
+                    max_tokens: 100,
+                }),
+            });
+
+            const result = await response.json();
+            const chatGptResponse = result.choices[0].text.trim();
+            
+            // Display ChatGPT response
             appendMessage('ChatGPT', chatGptResponse);
 
             // Clear user input
@@ -91,6 +134,7 @@
         function appendMessage(sender, message) {
             var chatContainer = document.getElementById('chat');
             var messageElement = document.createElement('div');
+            messageElement.className = sender;
             messageElement.innerHTML = '<strong>' + sender + ':</strong> ' + message;
             chatContainer.appendChild(messageElement);
         }
