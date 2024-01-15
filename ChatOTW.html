@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatGPT Integration</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        #chat-container {
+            max-width: 600px;
+            margin: auto;
+            overflow-y: auto;
+            max-height: 400px;
+            border: 1px solid #555;
+            padding: 10px;
+            background-color: #f5f5f5;
+        }
+
+        #user-input {
+            margin-top: 10px;
+        }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #555;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>ChatGPT Integration</h1>
+    </header>
+
+    <main>
+        <div id="chat-container">
+            <!-- Chat messages will be displayed here -->
+            <div id="chat"></div>
+        </div>
+
+        <div id="user-input">
+            <input type="text" id="user-message" placeholder="Type your message...">
+            <input type="submit" value="Send" onclick="sendMessage()">
+        </div>
+    </main>
+
+    <script>
+        function sendMessage() {
+            var userMessage = document.getElementById('user-message').value;
+            appendMessage('User', userMessage);
+
+            // Call ChatGPT or your backend API here for processing user input
+
+            // For demonstration purposes, let's assume a simple response from ChatGPT
+            var chatGptResponse = 'ChatGPT: ' + 'This is a sample response from ChatGPT.';
+            appendMessage('ChatGPT', chatGptResponse);
+
+            // Clear user input
+            document.getElementById('user-message').value = '';
+        }
+
+        function appendMessage(sender, message) {
+            var chatContainer = document.getElementById('chat');
+            var messageElement = document.createElement('div');
+            messageElement.innerHTML = '<strong>' + sender + ':</strong> ' + message;
+            chatContainer.appendChild(messageElement);
+        }
+    </script>
+</body>
+</html>
