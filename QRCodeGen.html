@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QR Code Generator</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+            background: linear-gradient(45deg, #414141, #181818);
+            background-size: 400% 400%;
+            animation: gradientAnimation 8s infinite;
+            color: #ddd;
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .qrcode-container {
+            background-color: #282828;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .qrcode-container h2 {
+            font-size: 40px;
+            color: #aaaaaa;
+            margin-bottom: 20px;
+        }
+
+        .qrcode-container .content {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .qrcode-container .control {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .qrcode-container .qrcode-message {
+            font-size: 12px;
+            padding: 6px;
+            resize: none;
+            background-color: #ecf0f1;
+            color: #333;
+            border: none;
+            border-radius: 5px;
+            width: 96%;
+        }
+
+        .qrcode-container .generate-btn,
+        .qrcode-container .download-btn {
+            border: none;
+            padding: 6px 12px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 5px;
+            color: #fff;
+            transition: background-color 0.3s;
+            background: #555555;
+        }
+
+        .qrcode-container .generate-btn:hover {
+            background: #888;
+        }
+
+        .qrcode-container .download-btn {
+            background: #4caf50;
+        }
+
+        .qrcode-container .download-btn:hover {
+            background: #45a049;
+        }
+
+        .qrcode-container .qrcode {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 0px solid #ffffff; /* Add this line for the border */
+            padding: 10px; /* Optional: Add padding for better visibility */
+        }
+
+        .qrcode-container .qrcode img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        @media (max-width: 700px) {
+            .qrcode-container .content {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="gradient-container">
+        <div class="gradient"></div>
+    </div>
+
+    <div class="qrcode-container">
+        <h2>QR Code Generator</h2>
+        <div class="content">
+            <div class="control">
+                <textarea class="qrcode-message" placeholder="Transform anything into a QR Code..."></textarea>
+                <button class="generate-btn">Generate</button>
+                <!-- Add the download button -->
+                <button class="download-btn">Download</button>
+            </div>
+            <div class="qrcode">
+                <!-- QR code will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"
+        integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+    ></script>
+
+    <script>
+        let message = "Write something in the text field and click on Generate QR Code button.";
+        const QRCodeImage = document.querySelector(".qrcode");
+        const QRCodeMessage = document.querySelector(".qrcode-message");
+        const generateBtn = document.querySelector(".generate-btn");
+        const downloadBtn = document.querySelector(".download-btn");
+
+        let qrcode = new QRCode(QRCodeImage, {
+            text: message,
+            width: 200,
+            height: 200,
+            colorDark: "#001219",
+            colorLight: "#ffffff",
+        });
+
+        const generateQRCode = (message) => {
+            qrcode.clear();
+            qrcode.makeCode(message);
+        };
+
+        generateBtn.addEventListener("click", () => {
+            message = QRCodeMessage.value;
+            generateQRCode(message);
+        });
+
+        // Function to download QR code
+        const downloadQRCode = () => {
+            const canvas = document.querySelector("canvas");
+            const url = canvas.toDataURL("image/png");
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "qrcode.png";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        };
+
+        downloadBtn.addEventListener("click", downloadQRCode);
+    </script>
+
+</body>
+</html>
