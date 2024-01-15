@@ -101,7 +101,7 @@
     </main>
 
     <script>
-        async function sendMessage() {
+async function sendMessage() {
     try {
         var userMessage = document.getElementById('user-message').value;
         appendMessage('User', userMessage);
@@ -127,9 +127,9 @@
         }
 
         const result = await response.json();
-        
-        if (!result.choices || result.choices.length === 0) {
-            throw new Error('Invalid API response structure');
+
+        if (!result || !result.choices || result.choices.length === 0 || !result.choices[0].text) {
+            throw new Error('Invalid or empty API response structure');
         }
 
         const chatGptResponse = result.choices[0].text.trim();
@@ -144,7 +144,6 @@
         // Handle error, display a user-friendly message, or log it for further investigation
     }
 }
-
     </script>
 </body>
 </html>
