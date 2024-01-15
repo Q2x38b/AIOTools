@@ -102,42 +102,49 @@
 
     <script>
         async function sendMessage() {
-            var userMessage = document.getElementById('user-message').value;
-            appendMessage('User', userMessage);
+    try {
+        var userMessage = document.getElementById('user-message').value;
+        appendMessage('User', userMessage);
 
-            // Call OpenAI GPT API
-            const apiKey = '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';
-            const apiUrl = 'https://api.openai.com/v1/engines/davinci/completions';
+        // Call OpenAI GPT API
+        const apiKey = 'YOUR_OPENAI_API_KEY';
+        const apiUrl = 'https://api.openai.com/v1/engines/davinci/completions';
 
-            const response = await fetch(apiUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${apiKey}`,
-                },
-                body: JSON.stringify({
-                    prompt: userMessage,
-                    max_tokens: 100,
-                }),
-            });
+        const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${apiKey}`,
+            },
+            body: JSON.stringify({
+                prompt: userMessage,
+                max_tokens: 100,
+            }),
+        });
 
-            const result = await response.json();
-            const chatGptResponse = result.choices[0].text.trim();
-            
-            // Display ChatGPT response
-            appendMessage('ChatGPT', chatGptResponse);
-
-            // Clear user input
-            document.getElementById('user-message').value = '';
+        if (!response.ok) {
+            throw new Error(`Failed to fetch: ${response.status} ${response.statusText}`);
         }
 
-        function appendMessage(sender, message) {
-            var chatContainer = document.getElementById('chat');
-            var messageElement = document.createElement('div');
-            messageElement.className = sender;
-            messageElement.innerHTML = '<strong>' + sender + ':</strong> ' + message;
-            chatContainer.appendChild(messageElement);
+        const result = await response.json();
+        
+        if (!result.choices || result.choices.length === 0) {
+            throw new Error('Invalid API response structure');
         }
+
+        const chatGptResponse = result.choices[0].text.trim();
+
+        // Display ChatGPT response
+        appendMessage('ChatGPT', chatGptResponse);
+
+        // Clear user input
+        document.getElementById('user-message').value = '';
+    } catch (error) {
+        console.error('Error:', error);
+        // Handle error, display a user-friendly message, or log it for further investigation
+    }
+}
+
     </script>
 </body>
 </html>
