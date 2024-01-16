@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All-In-One Random Generator</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow: hidden;
+      background: linear-gradient(45deg, #414141, #181818);
+      background-size: 400% 400%;
+      animation: gradientAnimation 8s infinite;
+      color: #ddd;
+    }
+
+    @keyframes gradientAnimation {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    h1 {
+      color: #ccc;
+      margin-bottom: 10px;
+    }
+
+    .options-container {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 20px;
+    }
+
+    .option-box {
+      text-align: left;
+      margin-right: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      font-size: 14px;
+      color: #ddd;
+    }
+
+    input {
+      padding: 8px;
+      width: 150px;
+      background-color: #ecf0f1;
+      color: #333;
+      border: none;
+      border-radius: 5px;
+      margin-top: 5px;
+    }
+
+    button {
+      padding: 12px;
+      margin: 8px;
+      font-size: 14px;
+      cursor: pointer;
+      background-color: #555;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+    }
+
+    button:hover {
+      background-color: #888;
+    }
+
+    #result {
+      margin-top: 20px;
+    }
+
+    #color-result {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      border: 0px solid #ddd;
+      margin-left: 5px;
+    }
+
+    .clear-button {
+      background-color: #555;
+      color: #fff;
+    }
+
+    .clear-button:hover {
+      background-color: #888;
+    }
+
+    /* New style for the return button */
+    #returnButton {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>All-In-One Random Generator</h1>
+
+  <div class="options-container">
+    <div class="option-box">
+      <label for="numberRange">Number Range:</label>
+      <input type="text" id="numberRange" placeholder="e.g. 1-100">
+    </div>
+
+    <div class="option-box">
+      <label for="letterRange">Letter Range:</label>
+      <input type="text" id="letterRange" placeholder="e.g. A-Z">
+    </div>
+  </div>
+
+  <div>
+    <button onclick="generateRandomNumber()">Generate Random Number</button>
+    <button onclick="generateRandomLetter()">Generate Random Letter</button>
+    <button onclick="generateRandomColor()">Generate Random Color</button>
+  </div>
+
+  <div>
+    <button class="clear-button" onclick="clearOutput()">Clear Output</button>
+  </div>
+
+  <div id="result"></div>
+  <div id="color-result"></div>
+
+  <!-- New button for returning to the home page -->
+  <button id="returnButton" onclick="returnToHomePage()">Return to Home Page</button>
+
+  <script>
+    function generateRandomNumber() {
+      var rangeInput = document.getElementById('numberRange').value;
+      var range = parseRange(rangeInput);
+      var randomNumber = Math.floor(Math.random() * (range.max - range.min + 1)) + range.min;
+      displayResult(randomNumber);
+      clearColorResult(); // Clear color result
+    }
+
+    function generateRandomLetter() {
+      var rangeInput = document.getElementById('letterRange').value.toUpperCase();
+      var minCharCode = rangeInput.charCodeAt(0);
+      var maxCharCode = rangeInput.charCodeAt(2);
+      var randomCharCode = Math.floor(Math.random() * (maxCharCode - minCharCode + 1)) + minCharCode;
+      var randomLetter = String.fromCharCode(randomCharCode);
+      displayResult(randomLetter);
+      clearColorResult(); // Clear color result
+    }
+
+    function generateRandomColor() {
+      var randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+      document.getElementById('color-result').style.backgroundColor = randomColor;
+      displayResult(randomColor);
+    }
+
+    function parseRange(rangeInput) {
+      var parts = rangeInput.split('-');
+      return {
+        min: parseInt(parts[0], 10),
+        max: parseInt(parts[1], 10)
+      };
+    }
+
+    function displayResult(result) {
+      document.getElementById('result').innerText = result;
+    }
+
+    function clearOutput() {
+      document.getElementById('result').innerText = '';
+      clearColorResult(); // Clear color result
+    }
+
+    function clearColorResult() {
+      document.getElementById('color-result').style.backgroundColor = 'transparent';
+    }
+
+    // New function for returning to the home page
+    function returnToHomePage() {
+      // Replace 'your_home_page.html' with the actual file path of your home page
+      window.location.href = 'LandingPage.html';
+    }
+  </script>
+</body>
+</html>

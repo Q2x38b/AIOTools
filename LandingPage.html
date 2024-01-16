@@ -20,7 +20,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh; /* Adjust this value based on your design */
+            height: 100vh;
         }
 
         #particles-js {
@@ -34,8 +34,36 @@
             text-align: center;
             padding: 40px 0;
             background-color: transparent;
-            color: #ddd;
+            color: #8d8c8c;
             z-index: 1;
+            position: relative;
+        }
+
+        #title-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: #ccc;
+            display: flex;
+            align-items: center;
+        }
+
+        h3 {
+            font-size: 1em;
+            color: #ccc;
+        }
+
+        #logo {
+            width: 45px;
+            height: auto;
+            filter: invert(80%);
+            margin-left: 10px;
         }
 
         nav {
@@ -51,14 +79,14 @@
             display: flex;
             justify-content: center;
             border-radius: 7px;
-            background: rgba(134, 134, 134, 0.233);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            width: 650px; /* Adjust the width as needed */
+            background: rgba(134, 134, 134, 0.178);
+            backdrop-filter: blur(3px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.308);
+            width: 850px;
             text-align: center;
             position: relative;
             top: -50px;
-            z-index: 2; /* Adjusted z-index */
+            z-index: 2;
         }
 
         nav li {
@@ -78,24 +106,13 @@
         }
 
         nav li a:hover {
-            background: #888;
+            background: #7e7c7c;
         }
 
         section {
             text-align: center;
             padding: 40px 20px;
             z-index: 1;
-        }
-
-        h1 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-            color: #ccc;
-        }
-
-        p {
-            font-size: 1.2em;
-            color: #aaa;
         }
 
         h1 small {
@@ -113,13 +130,17 @@
     <div class="container">
 
         <header>
-            <h1>Webpage Hub<h3>The All In One Web Tool</h3></h1>
+            <div id="title-container">
+                <h1>Web-Verse <img src="https://static.thenounproject.com/png/136283-200.png" alt="Logo" id="logo"></h1>
+                <h3>The All In One Web Tool</h3>
+            </div>
         </header>
 
         <nav>
             <ul>
                 <li><a href="PasswordGen.html">Password Generator</a></li>
                 <li><a href="QRCodeGen.html">QR Code Generator</a></li>
+                <li><a href="AIORandomGen.html">Random Generators</a></li>
                 <li><a href="page3.html">Page 3</a></li>
                 <!-- Add more links as needed -->
             </ul>

@@ -7,19 +7,21 @@
     <title>QR Code Generator</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            overflow: hidden;
-            background: linear-gradient(45deg, #414141, #181818);
-            background-size: 400% 400%;
-            animation: gradientAnimation 8s infinite;
-            color: #ddd;
+          font-family: 'Arial', sans-serif;
+          text-align: center;
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          min-height: 100vh;
+          overflow: hidden;
+          background: linear-gradient(45deg, #414141, #181818);
+          background-size: 400% 400%;
+          animation: gradientAnimation 8s infinite;
+          color: #ddd;
         }
 
         @keyframes gradientAnimation {
@@ -37,12 +39,13 @@
         .qrcode-container {
             background-color: #282828;
             border-radius: 10px;
-            padding: 20px;
+            padding: 65px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative; /* Add this line */
         }
 
         .qrcode-container h2 {
-            font-size: 40px;
+            font-size: 35px;
             color: #aaaaaa;
             margin-bottom: 20px;
         }
@@ -109,6 +112,27 @@
             height: auto;
         }
 
+        /* New style for the return button */
+        #returnButton {
+           position: fixed;
+            bottom: 10px;
+            right: 10px;
+            border: none;
+            padding: 6px 12px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 5px;
+            color: #fff;
+            transition: background-color 0.3s;
+            background: #555555;
+            z-index: 1;
+        }
+
+
+        #returnButton:hover {
+            background: #888;
+        }
+
         @media (max-width: 700px) {
             .qrcode-container .content {
                 max-width: 400px;
@@ -136,6 +160,9 @@
                 <!-- QR code will be dynamically inserted here -->
             </div>
         </div>
+
+        <!-- New button for returning to the home page -->
+        <button id="returnButton" onclick="returnToHomePage()">Return to Home Page</button>
     </div>
 
     <script
@@ -183,6 +210,15 @@
         };
 
         downloadBtn.addEventListener("click", downloadQRCode);
+    </script>
+
+    <script>
+        // ... (existing script content) ...
+
+        function returnToHomePage() {
+            // Replace 'your_home_page.html' with the actual file path of your home page
+            window.location.href = 'LandingPage.html';
+        }
     </script>
 
 </body>
