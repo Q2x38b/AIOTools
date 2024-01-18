@@ -40,6 +40,12 @@
       margin-bottom: 10px;
     }
 
+    .prevent-select {
+             -webkit-user-select: none; /* Safari */
+            -ms-user-select: none; /* IE 10 and IE 11 */
+            user-select: none; /* Standard syntax */
+        }
+
     .options-container {
       display: flex;
       justify-content: space-around;
@@ -112,7 +118,7 @@
     }
   </style>
 </head>
-<body>
+<body onContextMenu="return false;" class="prevent-select">
   <h1>All-In-One Random Generator</h1>
 
   <div class="options-container">

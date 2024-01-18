@@ -128,6 +128,11 @@
             z-index: 1;
         }
 
+        .prevent-select {
+             -webkit-user-select: none; /* Safari */
+            -ms-user-select: none; /* IE 10 and IE 11 */
+            user-select: none; /* Standard syntax */
+        }
 
         #returnButton:hover {
             background: #888;
@@ -141,7 +146,7 @@
         }
     </style>
 </head>
-<body>
+<body onContextMenu="return false;" class="prevent-select">
 
     <div class="gradient-container">
         <div class="gradient"></div>
