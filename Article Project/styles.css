@@ -352,7 +352,7 @@ body.popup-active > *:not(.popup-container) {
 
 .header-rectangle {
     background-color: #343b3b;
-    height: 190px;
+    height: 160px;
     color: #fff;
     padding: 20px;
     text-align: center;
@@ -378,4 +378,8 @@ header {
     -webkit-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+.related-posts-link {
+    text-decoration: none;
 }
