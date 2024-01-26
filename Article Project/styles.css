@@ -1,5 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald&family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+*, *:after, *:before {
+	box-sizing: border-box;
+}
+
 body {
-    font-family: "Poppins", sans-serif;
+    font-family: "Roboto", sans-serif;
     justify-content: center;  
     align-items: center;
     min-height: 100vh;
@@ -7,6 +14,7 @@ body {
     padding: 0;
     background: #2b3031;
     overflow-x: hidden;
+    display: flexbox;
 }
 
 html {
@@ -14,7 +22,7 @@ html {
 }
 
 ::-webkit-scrollbar {
-    width: 11px;
+    width: 12px;
 }
   
   ::-webkit-scrollbar-track {
@@ -22,7 +30,7 @@ html {
 }
   
   ::-webkit-scrollbar-thumb {
-    background: #888;
+    background: #616161;
 }
   
   ::-webkit-scrollbar-thumb:hover {
@@ -93,7 +101,7 @@ div h2 {
 .hr-format {
     display: block;
     border: none;
-    border-top: 1px solid #a8a8a8;
+    border-top: 1px solid #616161;
     height: 2px;
     width: 100%;
     text-align: center;
@@ -136,21 +144,6 @@ div h2 {
     margin-left: auto;
     margin-right: auto;
     border-radius: 30%;
-}
-
-.related-posts-title {
-    font-family: "Poppins", sans-serif;
-    align-items: center;
-    color: #d3d3d3;
-    display: block;
-    text-decoration: none;
-    text-align: center;
-    font-size: 35px;
-    margin-top: 10px;
-    margin-bottom: 30px;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
 }
 
 .banner {
@@ -208,7 +201,7 @@ div h2 {
 
 .show-popup {
     padding: 18px 40px;
-    background: #6e6e6e;
+    background: #6e6e6e73;
     align-items: center;
     text-align: center;
     margin-left: auto;
@@ -230,7 +223,7 @@ div h2 {
     transform: translate(-50%, -50%);
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.486);
+    background: #61616167;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -317,7 +310,7 @@ body.popup-active > *:not(.popup-container) {
     right: 20px;
     width: 50px;
     height: 50px;
-    background-color: #929292;
+    background-color: #616161;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -344,6 +337,7 @@ body.popup-active > *:not(.popup-container) {
     color: #fff;
     padding: 20px;
     text-align: center;
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .footer-text {
@@ -352,10 +346,11 @@ body.popup-active > *:not(.popup-container) {
 
 .header-rectangle {
     background-color: #343b3b;
-    height: 160px;
+    height: 140px;
     color: #fff;
-    padding: 20px;
+    padding: 10px;
     text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .header-text {
@@ -366,7 +361,7 @@ header {
     position: sticky;
     top: 0;
     width: 100%;
-    transition: all 300ms ease-in-out;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
 }
 
 .footer-author {
@@ -382,4 +377,86 @@ header {
 
 .related-posts-link {
     text-decoration: none;
+}
+
+path {
+    fill: black;
+}
+
+.hoverinfo {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    font-size: 28px;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+.hoverinfo p {
+    display: none;
+    color: #000000;
+}
+
+.hoverinfo:hover p {
+    background-color: rgba(255, 255, 255, 0.7);
+    display: block;
+}
+
+.related-posts-title {
+    font-family: "Poppins", sans-serif;
+    align-items: center;
+    color: #d3d3d3;
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    font-size: 35px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+header div div div ul {
+    list-style: none;
+    text-align: center;
+	color: inherit;
+	text-decoration: none;
+	transition: .25s ease;
+    display: flex;
+    justify-content: center;
+}
+
+header div div ul {
+    text-align: center;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.header-text ul {
+    list-style: none;
+    text-align: center;
+    color: inherit;
+    text-decoration: none;
+    transition: .25s ease;
+    display: flex;
+    justify-content: center;
+}
+
+.header-text ul li {
+    display: inline; /* Make list items display inline */
+}
+
+.header-text ul a {
+    margin-left: .75em;
+    margin-right: .75em;
+}
+
+.header-text ul:hover a {
+    color: #d3d3d3;
+}
+
+.header-text ul:hover a:hover {
+    color: #818181;
+    box-shadow: 0 2px 0 0 currentcolor;
 }
