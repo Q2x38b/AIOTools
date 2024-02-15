@@ -322,13 +322,13 @@ body.popup-active > *:not(.popup-container) {
 }
 
 .grid-container {
-    display: flex;
+    display: grid;
+    grid-auto-flow: column;
 }
 
 .li-format {
     flex: 1;
     list-style: none;
-    margin: 10px; 
 }
 
 .footer-rectangle {
